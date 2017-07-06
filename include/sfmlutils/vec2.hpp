@@ -1,0 +1,209 @@
+#pragma once
+
+/*
+This code originates from https://github.com/SFML/SFML/wiki/Source:-2D-Vector-Manipulation,
+rewritten to my naming conventions
+*/
+
+/* Includes - STL */
+#include <string>
+
+/* Includes - SFML */
+#include <SFML/System/Vector2.hpp>
+
+/* Defines */
+#define PI 3.14159265358979323846F
+
+namespace sfmlutils
+{
+	class Vec2
+	{
+	public:
+		/* The x and y values of this vector */
+		float x, y;
+
+		Vec2(void);
+		Vec2(const Vec2&);
+		Vec2(float, float);
+		Vec2(const sf::Vector2f&);
+		Vec2(const sf::Vector2i&);
+		~Vec2(void);
+
+		/*
+		* Add and assign operator
+		* @Vec2		Vector to add against
+		* ->Vec2	this
+		*/
+		Vec2& operator+=(const Vec2);
+
+		/*
+		* Add operator
+		* @Vec2		Vector for adding against
+		* ->Vec2	Result
+		*/
+		Vec2 operator+(const Vec2) const;
+
+		/*
+		* Subtract and assign operator
+		* @Vec2		Vector to subtract against
+		* ->Vec2	this
+		*/
+		Vec2& operator-=(const Vec2);
+
+		/*
+		* Subtract operator
+		* @Vec2		Vector for subtracting against
+		* ->Vec2	Result
+		*/
+		Vec2 operator-(const Vec2) const;
+
+		/*
+		* Multiply and assign operator
+		* @float		Scalar for multiplying against
+		* ->Vec2	this
+		*/
+		Vec2& operator*=(float);
+
+		/*
+		* Multiply operator
+		* @float		Scalar for multiplying against
+		* ->Vec2	Result
+		*/
+		Vec2 operator*(float) const;
+
+		/*
+		* Divide and assign operator
+		* @float		Scalar for dividing against
+		* ->Vec2	this
+		*/
+		Vec2& operator/=(float);
+
+		/*
+		* Divide operator
+		* @float		Scalar for dividing against
+		* ->Vec2	Result
+		*/
+		Vec2 operator/(float) const;
+
+		/*
+		* Rotate and assign operator
+		* @float		Theta for rotating against
+		* ->Vec2	this
+		*/
+		Vec2& operator%=(float);
+
+		/*
+		* Rotate operator
+		* @float		Theta for rotating against
+		* ->Vec2	Result
+		*/
+		Vec2 operator%(float) const;
+
+		/*
+		* Rotate the vector
+		* @float		Theta for rotating against
+		* ->Vec2	Result
+		*/
+		void rotate(float);
+
+		/*
+		* Rotate the vector
+		* @float		Theta for rotating against
+		* ->Vec2	Result
+		*/
+		Vec2 rotated(float) const;
+
+		/*
+		* Equals operator
+		* @Vec2		Vector for comparing against
+		* ->bool		Result
+		*/
+		bool operator==(const Vec2);
+
+		/*
+		* Not equals operator
+		* @Vec2		Vector for comparing against
+		* ->bool		Result
+		*/
+		bool operator!=(const Vec2);
+
+		/*
+		* The dot product of this and another vector
+		* @Vec2		Vector for comparing against
+		* ->float		The dot product
+		*/
+		float dot(const Vec2);
+
+		/*
+		* The normalization of this vector
+		* ->Vec2	A new vector that equals this vector normalized
+		*/
+		Vec2 normalize();
+
+		/*
+		* The normalization of this vector
+		* ->Vec2	A new vector that equals this vector normalized
+		*/
+		Vec2 normalized() const;
+
+		/*
+		* Truncates this vector
+		* @float		Value to truncate by
+		* ->Vec2		this
+		*/
+		Vec2& trunc(float);
+
+		/*
+		* The angle of this vector
+		* ->float		This vector's angle in radians
+		*/
+		float angle() const;
+
+		/*
+		* The length of this vector
+		* ->float		This vector's length
+		*/
+		float length() const;
+
+		/*
+		* Reassigns this vector's values to the specified values
+		* @float		The new x value
+		* @float		The new y value
+		*/
+		void reassign(float, float);
+
+		/*
+		* Reassigns this vector's values to the vector
+		* @Vec2		The new vector
+		*/
+		void reassign(Vec2);
+
+		/*
+		* Reassigns this vector's values to the vector
+		* @float		Minimum value
+		* @float		Maximum value
+		*/
+		void clamp(float min, float max);
+
+		/*
+		* Reassigns this vector's values to the vector
+		* @float		Minimum x value
+		* @float		Maximum x value
+		* @float		Minimum y value
+		* @float		Maximum y value
+		*/
+		void clamp(float minX, float maxX, float minY, float maxY);
+
+		/*
+		* Converts this vector to a SFML vector
+		* -> sf::Vector2f	The new vector
+		*/
+		const sf::Vector2f toSFMLVector() const;
+
+		/*
+		* A string representation of this vector
+		* ->std::string	This vector to a string
+		*/
+		const std::string toString() const;
+	};
+}
