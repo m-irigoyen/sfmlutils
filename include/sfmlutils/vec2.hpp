@@ -101,17 +101,31 @@ namespace sfmlutils
 
 		/*
 		* Rotate the vector
-		* @float		Theta for rotating against
+		* @float		Theta for rotating against (in degrees)
 		* ->Vec2	Result
 		*/
-		void rotate(float);
+		void rotateDeg(float);
 
 		/*
 		* Rotate the vector
-		* @float		Theta for rotating against
+		* @float		Theta for rotating against (in radians)
 		* ->Vec2	Result
 		*/
-		Vec2 rotated(float) const;
+		void rotateRad(float);
+
+		/*
+		* Rotate the vector
+		* @float		Theta for rotating against (in degrees)
+		* ->Vec2	Result
+		*/
+		Vec2 rotatedDeg(float) const;
+
+		/*
+		* Rotate the vector
+		* @float		Theta for rotating against (in radians)
+		* ->Vec2	Result
+		*/
+		Vec2 rotatedRad(float) const;
 
 		/*
 		* Equals operator
@@ -205,5 +219,17 @@ namespace sfmlutils
 		* ->std::string	This vector to a string
 		*/
 		const std::string toString() const;
+
+		/*
+		* Convert an angle from degree to radian
+		* ->float	An angle in degree
+		*/
+		static float degToRad(float angleInDegree);
+
+		/*
+		* Convert an angle from radian to degree
+		* ->float	An angle in radian
+		*/
+		static float radToDeg(float angleInRadian);
 	};
 }

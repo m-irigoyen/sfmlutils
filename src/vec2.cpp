@@ -147,14 +147,24 @@ namespace sfmlutils
 		return Vec2(px, py);
 	}
 
-	void Vec2::rotate(float f)
+	void Vec2::rotateDeg(float f)
+	{
+		rotateRad(degToRad(f));
+	}
+
+	void Vec2::rotateRad(float f)
 	{
 		*this %= f;
 	}
 
-	Vec2 Vec2::rotated(float f) const
+	Vec2 Vec2::rotatedDeg(float f) const
 	{
-		return *this % f;
+		return rotatedRad(degToRad(f));
+	}
+
+	Vec2 Vec2::rotatedRad(float f) const
+	{
+		return operator%(f);
 	}
 
 	bool Vec2::operator==(const Vec2 otr)
@@ -203,5 +213,13 @@ namespace sfmlutils
 	const std::string Vec2::toString() const
 	{
 		return std::string("[" + std::to_string(x) + ", " + std::to_string(y) + "]");
+	}
+	float Vec2::degToRad(float angleInDegree)
+	{
+		return angleInDegree * PI / 180;
+	}
+	float Vec2::radToDeg(float angleInRadian)
+	{
+		return angleInRadian * 180 / PI;
 	}
 }
