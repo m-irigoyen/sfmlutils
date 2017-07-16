@@ -11,11 +11,12 @@ rewritten to my naming conventions
 /* Includes - SFML */
 #include <SFML/System/Vector2.hpp>
 
+namespace sfmlutils
+{
+
 /* Defines */
 #define PI 3.14159265358979323846F
 
-namespace sfmlutils
-{
 	class Vec2
 	{
 	public:
