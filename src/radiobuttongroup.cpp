@@ -20,6 +20,14 @@ namespace sfmlutils
 
 	RadioButtonGroup::~RadioButtonGroup()
 	{
+		for (AbstractRadioButton* b : buttons_)
+		{
+			if (b)
+			{
+				delete (b);
+				b = nullptr;
+			}
+		}
 	}
 
 	void RadioButtonGroup::addButton(AbstractRadioButton * button)
@@ -59,10 +67,10 @@ namespace sfmlutils
 			{
 				if (current_)
 				{
-					current_->forceState(AbstractPushButton::STATE::REST);
+					current_->setState(AbstractRadioButton::STATE::REST);
 				}
 				current_ = button;
-				current_->forceState(AbstractPushButton::STATE::CLICKED);
+				current_->setState(AbstractRadioButton::STATE::SELECTED);
 				notifyObservers();
 			}
 		}
@@ -84,8 +92,14 @@ namespace sfmlutils
 	{
 		for (AbstractRadioButton* b : buttons_)
 		{
-			b->forceState(AbstractPushButton::STATE::REST);
+			b->setState(AbstractRadioButton::STATE::REST);
 		}
 		current_ = nullptr;
+	}
+	void RadioButtonGroup::onObserverRegistered(Observer * obs)
+	{
+	}
+	void RadioButtonGroup::onObserverNotified(Observer * obs)
+	{
 	}
 }

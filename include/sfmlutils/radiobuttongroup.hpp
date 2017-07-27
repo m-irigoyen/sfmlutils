@@ -23,9 +23,13 @@ namespace sfmlutils
 		std::vector<AbstractRadioButton*> buttons_;
 		AbstractRadioButton* current_;
 
+		void resetAllButtons();
+
 		// Inherited via Observer
 		virtual void onNotify(mutils::Observed* obs) override;
 
-		void resetAllButtons();
+		// Inherited via Observed
+		virtual void onObserverRegistered(Observer * obs) override;
+		virtual void onObserverNotified(Observer * obs) override;
 	};
 }

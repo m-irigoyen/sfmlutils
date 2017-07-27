@@ -4,20 +4,18 @@
 
 namespace sfmlutils
 {
-	class AbstractRadioButton : public AbstractButton
+	class AbstractToggleButton : public AbstractButton
 	{
 	public:
-		AbstractRadioButton();
-
 		enum STATE
 		{
-			REST,
-			HOVER,
-			CLICKED,
-			SELECTED,
+			OFF,
+			ON,
 
 			COUNT
 		};
+
+		AbstractToggleButton();
 
 		virtual void onMouseMove(const sf::Vector2f& pos) override;
 		virtual bool onMousePress(const sf::Vector2f& pos) override;
@@ -29,7 +27,12 @@ namespace sfmlutils
 
 		STATE getState() const;
 
+		virtual void setHoverIndication() = 0;
+
+		virtual bool isOn() const;
+
 	protected:
+		bool hover_;
 		STATE state_;
 	};
 }
