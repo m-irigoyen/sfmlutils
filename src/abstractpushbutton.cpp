@@ -68,7 +68,7 @@ namespace sfmlutils
 		return margin_;
 	}
 
-	void AbstractPushButton::inputPosition(const sf::Vector2f & pos)
+	void AbstractPushButton::onMouseMove(const sf::Vector2f & pos)
 	{
 		if (isInsideButton(pos))
 		{
@@ -98,11 +98,18 @@ namespace sfmlutils
 
 	bool AbstractPushButton::onMouseRelease(const sf::Vector2f& pos)
 	{
-		if ((state_ == STATE::CLICKED) && isInsideButton(pos))
+		if (state_ == STATE::CLICKED)
 		{
-			notifyObservers();
-			switchState(STATE::REST);
-			return true;
+			if (isInsideButton(pos))
+			{
+				notifyObservers();
+				switchState(STATE::REST);
+				return true;
+			}
+			else
+			{
+				switchState(STATE::REST);
+			}
 		}
 		return false;
 	}

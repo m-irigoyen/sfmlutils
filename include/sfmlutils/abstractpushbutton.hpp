@@ -1,5 +1,7 @@
 #pragma once
 
+#include <sfmlutils\abstractbutton.hpp>
+
 #include <SFML\Graphics\Text.hpp>
 #include <SFML\Graphics\RectangleShape.hpp>
 #include <SFML\Graphics\RenderWindow.hpp>
@@ -10,7 +12,7 @@
 
 namespace sfmlutils
 {
-	class AbstractPushButton : public mutils::Observed
+	class AbstractPushButton : public AbstractButton
 	{
 	public :
 		enum STATE
@@ -25,7 +27,7 @@ namespace sfmlutils
 		AbstractPushButton();
 		~AbstractPushButton();
 
-		virtual void draw(sf::RenderWindow* window) const;
+		virtual void draw(sf::RenderWindow* window) const override;
 
 		sf::Text* getText() const;
 		sf::RectangleShape* getRectShape() const;
@@ -37,9 +39,9 @@ namespace sfmlutils
 		void setString(std::string text);
 		void setMargin(const sf::Vector2f& margin);
 
-		virtual void inputPosition(const sf::Vector2f& pos);
-		virtual bool onMousePress(const sf::Vector2f& pos);
-		virtual bool onMouseRelease(const sf::Vector2f& pos);
+		virtual void onMouseMove(const sf::Vector2f& pos) override;
+		virtual bool onMousePress(const sf::Vector2f& pos) override;
+		virtual bool onMouseRelease(const sf::Vector2f& pos) override;
 
 		sf::Vector2f getSize() const;
 
