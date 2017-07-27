@@ -44,7 +44,7 @@ namespace sfmlutils
 		}
 		else if (ratio < 1.f)
 		{
-			s.y *= 1. / ratio;
+			s.y *= 1.f / ratio;
 		}
 		return s * scale;
 	}

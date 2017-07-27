@@ -68,7 +68,7 @@ namespace sfmlutils
 		return margin_;
 	}
 
-	void AbstractPushButton::inputPosition(const sf::Vector2f & pos)
+	void AbstractPushButton::onMouseMove(const sf::Vector2f & pos)
 	{
 		if (isInsideButton(pos))
 		{
@@ -112,7 +112,7 @@ namespace sfmlutils
 		return rectShape_->getSize() + margin_;
 	}
 
-	bool AbstractPushButton::isInsideButton(const sf::Vector2f & pos)
+	bool AbstractPushButton::isInsideButton(const sf::Vector2f & pos) const
 	{
 		sf::FloatRect r = getRectShape()->getGlobalBounds();
 
