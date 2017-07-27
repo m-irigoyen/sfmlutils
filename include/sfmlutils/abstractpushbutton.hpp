@@ -39,14 +39,14 @@ namespace sfmlutils
 		void setString(std::string text);
 		void setMargin(const sf::Vector2f& margin);
 
-		virtual void onMouseMove(const sf::Vector2f& pos) override;
-		virtual bool onMousePress(const sf::Vector2f& pos) override;
-		virtual bool onMouseRelease(const sf::Vector2f& pos) override;
+		virtual void onMouseMove(const sf::Vector2f& pos);
+		virtual bool onMousePress(const sf::Vector2f& pos);
+		virtual bool onMouseRelease(const sf::Vector2f& pos);
 
 		sf::Vector2f getSize() const;
 
 		//! WARNING : This does NOT consider rotation
-		virtual bool isInsideButton(const sf::Vector2f& pos);
+		virtual bool isInsideButton(const sf::Vector2f& pos) const;
 
 		sf::Vector2f position;
 		//float rotation;

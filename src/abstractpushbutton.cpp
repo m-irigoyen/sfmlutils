@@ -119,7 +119,7 @@ namespace sfmlutils
 		return rectShape_->getSize() + margin_;
 	}
 
-	bool AbstractPushButton::isInsideButton(const sf::Vector2f & pos)
+	bool AbstractPushButton::isInsideButton(const sf::Vector2f & pos) const
 	{
 		sf::FloatRect r = getRectShape()->getGlobalBounds();
 
