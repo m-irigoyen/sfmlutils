@@ -8,14 +8,9 @@
 namespace sfmlutils
 {
 	AbstractPushButton::AbstractPushButton()
-		: state_(STATE::REST)
-		, text_(nullptr)
-		, rectShape_(nullptr)
-		, textShader_(nullptr)
-		, rectShader_(nullptr)
+		: AbstractButton()
+		, state_(STATE::REST)
 	{
-		text_ = new sf::Text();
-		rectShape_ = new sf::RectangleShape();
 	}
 
 	AbstractPushButton::~AbstractPushButton()
@@ -25,47 +20,9 @@ namespace sfmlutils
 		// Shaders are not owned by graphics objects
 	}
 
-	void AbstractPushButton::setString(std::string text)
-	{
-		text_->setString(text);
-		sfmlutils::setTextOriginToCenter(text_);
-		computeRect();
-	}
-
-	void AbstractPushButton::setMargin(const sf::Vector2f & margin)
-	{
-		margin_ = margin;
-		computeRect();
-	}
-
-	sf::Text * sfmlutils::AbstractPushButton::getText() const
-	{
-		return text_;
-	}
-
-	sf::RectangleShape * AbstractPushButton::getRectShape() const
-	{
-		return rectShape_;
-	}
-
-	sf::Shader * AbstractPushButton::getTextShader() const
-	{
-		return textShader_;
-	}
-
-	sf::Shader * AbstractPushButton::getRectShader() const
-	{
-		return rectShader_;
-	}
-
 	AbstractPushButton::STATE AbstractPushButton::getState() const
 	{
 		return state_;
-	}
-
-	sf::Vector2f AbstractPushButton::getMargin() const
-	{
-		return margin_;
 	}
 
 	void AbstractPushButton::onMouseMove(const sf::Vector2f & pos)
@@ -98,18 +55,20 @@ namespace sfmlutils
 
 	bool AbstractPushButton::onMouseRelease(const sf::Vector2f& pos)
 	{
-		if ((state_ == STATE::CLICKED) && isInsideButton(pos))
+		if (state_ == STATE::CLICKED)
 		{
-			notifyObservers();
-			switchState(STATE::REST);
-			return true;
+			if (isInsideButton(pos))
+			{
+				notifyObservers();
+				switchState(STATE::REST);
+				return true;
+			}
+			else
+			{
+				switchState(STATE::REST);
+			}
 		}
 		return false;
-	}
-
-	sf::Vector2f AbstractPushButton::getSize() const
-	{
-		return rectShape_->getSize() + margin_;
 	}
 
 	bool AbstractPushButton::isInsideButton(const sf::Vector2f & pos) const
@@ -136,14 +95,6 @@ namespace sfmlutils
 		{
 			MUTILS_ASSERT(false);
 		}
-	}
-
-	void AbstractPushButton::computeRect()
-	{
-		sf::FloatRect textBounds = text_->getGlobalBounds();
-		rectShape_->setSize(sf::Vector2f(textBounds.width + margin_.x*2
-			, textBounds.height + margin_.y*2));
-		sfmlutils::setShapeOriginToCenter(rectShape_);
 	}
 
 	void AbstractPushButton::draw(sf::RenderWindow * window) const
