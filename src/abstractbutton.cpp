@@ -79,6 +79,11 @@ namespace sfmlutils
 		}
 	}
 
+	bool AbstractButton::isInsideButton(const sf::Vector2f & pos) const
+	{
+		return false;
+	}
+
 	void AbstractButton::computeRect()
 	{
 		sf::FloatRect textBounds = text_->getGlobalBounds();

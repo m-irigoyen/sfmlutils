@@ -27,7 +27,7 @@ namespace sfmlutils
 		virtual void onMouseMove(const sf::Vector2f& pos) = 0;
 		virtual bool onMousePress(const sf::Vector2f& pos) = 0;
 		virtual bool onMouseRelease(const sf::Vector2f& pos) = 0;
-		virtual bool isInsideButton(const sf::Vector2f& pos) const = 0;
+		virtual bool isInsideButton(const sf::Vector2f& pos) const;
 
 		sf::Vector2f position;
 

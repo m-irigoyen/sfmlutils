@@ -1,5 +1,7 @@
 #include <sfmlutils/abstractpushbutton.hpp>
 
+#include <sfmlutils/vectorutils.hpp>
+
 #include <mutils/assert.hpp>
 #include <mutils/collision.hpp>
 
@@ -76,7 +78,7 @@ namespace sfmlutils
 		sf::FloatRect r = getRectShape()->getGlobalBounds();
 
 		return (mutils::isInAABB(
-			pos
+			sfToVec2(pos)
 			, mutils::Vec2(r.left, r.top)
 			, mutils::Vec2(r.left + r.width, r.top + r.height)));
 	}

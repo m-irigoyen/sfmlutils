@@ -1,5 +1,7 @@
 #include <sfmlutils\abstracttogglebutton.hpp>
 
+#include <sfmlutils/vectorutils.hpp>
+
 #include <mutils/collision.hpp>
 
 namespace sfmlutils
@@ -42,7 +44,8 @@ namespace sfmlutils
 
 	bool AbstractToggleButton::isInsideButton(const sf::Vector2f & pos) const
 	{
-		return mutils::isInAABB(pos, getRectShape()->getGlobalBounds());
+		sf::FloatRect r(getRectShape()->getGlobalBounds());
+		return mutils::isInAABB(sfToVec2(pos), r.left, r.top, r.width, r.height);
 	}
 
 	AbstractToggleButton::STATE AbstractToggleButton::getState() const

@@ -22,7 +22,6 @@ namespace sfmlutils
 		virtual void onMouseMove(const sf::Vector2f& pos) override;
 		virtual bool onMousePress(const sf::Vector2f& pos) override;
 		virtual bool onMouseRelease(const sf::Vector2f& pos) override;
-		virtual bool isInsideButton(const sf::Vector2f & pos) const override;
 
 		//! Forces state without notifying observers
 		virtual void setState(STATE s) = 0;

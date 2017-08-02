@@ -52,8 +52,4 @@ namespace sfmlutils
 	{
 		return state_;
 	}
-	bool AbstractRadioButton::isInsideButton(const sf::Vector2f & pos) const
-	{
-		return mutils::isInAABB(pos, getRectShape()->getGlobalBounds());
-	}
 }
